@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 dataset_test.csv
 queries_sql/
+.idea/
