@@ -11,7 +11,7 @@ df2 = df1a.join(
     df1b, df1a.ID == df1b.FUND_ID
 ).filter(
     "GROUP_ID = 20"
-)
+).drop(df1b["DAT_EXPORTACAO"])
 
 df3 = df2.select(
     'ID',

@@ -15,10 +15,10 @@ df2 = df1.select(
     'NUM = 1'
 )
 
-ident = [x.IDENTIFICADOR for x in df.collect()]
-
-df3 = df1.filter(
-    F.col("IDENTIFICADOR").isin(ident)
+df3 = df1.join(
+    df2,
+    on="IDENTIFICADOR",
+    how="leftsemi"
 )
 
 df4 = df3.withColumn(
