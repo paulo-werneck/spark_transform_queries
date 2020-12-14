@@ -8,10 +8,12 @@ df1a = spark.read.table('rw_sql_alphatools_xpa_funds_basefund')
 df1b = spark.read.table('rw_sql_alphatools_funds_fundgroupmembership')
 
 df2 = df1a.join(
-    df1b, df1a.ID == df1b.FUND_ID
-).filter(
-    "GROUP_ID = 20"
-).drop(df1b["DAT_EXPORTACAO"])
+    df1b.filter(
+        F.col("GROUP_ID") == 20
+    ),
+    on=df1a.ID == df1b.FUND_ID
+    how="leftsemi"
+)
 
 df3 = df2.select(
     'ID',
